@@ -1,7 +1,8 @@
 import { useState } from "react";
+import { useLocalStorage } from "../hooks/useLocalStorage";
 
 function TaskManager() {
-  const [tasks, setTasks] = useState([]);
+  const [tasks, setTasks] = useLocalStorage("tasks", []);
   const [input, setInput] = useState("");
   const [filter, setFilter] = useState("all");
 
