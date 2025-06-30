@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useLocalStorage } from "../hooks/useLocalStorage";
+import Button from "./Button";
 
 function TaskManager() {
   const [tasks, setTasks] = useLocalStorage("tasks", []);
@@ -42,32 +43,29 @@ function TaskManager() {
           onChange={(e) => setInput(e.target.value)}
           placeholder="Add a new task"
         />
-        <button
-          className="bg-blue-600 text-white px-4 py-1 rounded-r"
-          onClick={addTask}
-        >
+        <Button variant="primary" onClick={addTask} className="rounded-l-none">
           Add
-        </button>
+        </Button>
       </div>
       <div className="mb-4 space-x-2">
-        <button
+        <Button
+          variant={filter === "all" ? "primary" : "secondary"}
           onClick={() => setFilter("all")}
-          className={filter === "all" ? "font-bold underline" : ""}
         >
           All
-        </button>
-        <button
+        </Button>
+        <Button
+          variant={filter === "active" ? "primary" : "secondary"}
           onClick={() => setFilter("active")}
-          className={filter === "active" ? "font-bold underline" : ""}
         >
           Active
-        </button>
-        <button
+        </Button>
+        <Button
+          variant={filter === "completed" ? "primary" : "secondary"}
           onClick={() => setFilter("completed")}
-          className={filter === "completed" ? "font-bold underline" : ""}
         >
           Completed
-        </button>
+        </Button>
       </div>
       <ul>
         {filteredTasks.map((task) => (
@@ -79,12 +77,13 @@ function TaskManager() {
             >
               {task.text}
             </span>
-            <button
-              className="text-red-500 hover:underline"
+            <Button
+              variant="danger"
               onClick={() => deleteTask(task.id)}
+              className="px-2 py-1"
             >
               Delete
-            </button>
+            </Button>
           </li>
         ))}
       </ul>

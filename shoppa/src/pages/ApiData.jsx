@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import Card from "../components/Card";
+import Button from "../components/Button";
 
 const PAGE_SIZE = 10;
 
@@ -62,23 +63,25 @@ function ApiData() {
       </div>
       {/* Pagination Controls */}
       <div className="flex justify-center items-center gap-2 mt-6">
-        <button
-          className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        <Button
+          variant="secondary"
           onClick={() => setPage((p) => Math.max(1, p - 1))}
           disabled={page === 1}
+          className="disabled:opacity-50"
         >
           Prev
-        </button>
+        </Button>
         <span>
           Page {page} of {totalPages}
         </span>
-        <button
-          className="px-3 py-1 rounded bg-gray-200 disabled:opacity-50"
+        <Button
+          variant="secondary"
           onClick={() => setPage((p) => Math.min(totalPages, p + 1))}
           disabled={page === totalPages}
+          className="disabled:opacity-50"
         >
           Next
-        </button>
+        </Button>
       </div>
     </section>
   );
